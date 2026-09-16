@@ -35,7 +35,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearch }) 
       <SEOHead
         title="QuickToolKit - Free Online Tools for Everyday Tasks"
         description="Fast, simple, and free online tools for images, PDFs, text, design, and developers. Process files locally in your browser with 100% privacy."
-        canonicalUrl="https://quicktoolkit.com/"
+        canonicalUrl="https://gamersign94-svg.github.io/quicktoolkit/"
         isHome={true}
       />
 

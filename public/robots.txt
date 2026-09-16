@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://quicktoolkit.com/sitemap.xml
+Sitemap: https://gamersign94-svg.github.io/quicktoolkit/sitemap.xml

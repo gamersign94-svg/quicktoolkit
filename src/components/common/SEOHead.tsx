@@ -75,10 +75,10 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: 'QuickToolKit',
-      url: 'https://quicktoolkit.com/',
+      url: 'https://gamersign94-svg.github.io/quicktoolkit/',
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://quicktoolkit.com/?q={search_term_string}',
+        target: 'https://gamersign94-svg.github.io/quicktoolkit/?q={search_term_string}',
         'query-input': 'required name=search_term_string',
       },
     });

@@ -26,7 +26,7 @@ interface ToolPageProps {
 }
 
 export const ToolPage: React.FC<ToolPageProps> = ({ tool, onNavigate }) => {
-  const canonicalUrl = `https://quicktoolkit.com/${tool.slug}`;
+  const canonicalUrl = `https://gamersign94-svg.github.io/quicktoolkit/${tool.slug}`;
 
   const renderToolComponent = () => {
     switch (tool.slug) {

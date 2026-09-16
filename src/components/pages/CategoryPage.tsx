@@ -30,7 +30,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ category, onNavigate
       <SEOHead
         title={`${catInfo.name} - Free Online Utilities | QuickToolKit`}
         description={catInfo.description}
-        canonicalUrl={`https://quicktoolkit.com/category/${category}`}
+        canonicalUrl={`https://gamersign94-svg.github.io/quicktoolkit/category/${category}`}
         breadcrumbs={breadcrumbs}
       />
 

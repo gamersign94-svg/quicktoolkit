@@ -15,7 +15,7 @@ export const AboutPage: React.FC<StaticPageProps> = ({ onNavigate }) => {
       <SEOHead
         title="About Us - QuickToolKit"
         description="Learn about QuickToolKit, a zero-budget, browser-first online tools suite built for speed, privacy, and simplicity."
-        canonicalUrl="https://quicktoolkit.com/about"
+        canonicalUrl="https://gamersign94-svg.github.io/quicktoolkit/about"
         breadcrumbs={breadcrumbs}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -90,7 +90,7 @@ export const ContactPage: React.FC<StaticPageProps> = ({ onNavigate }) => {
       <SEOHead
         title="Contact Us - QuickToolKit"
         description="Have a tool suggestion, feedback, or inquiry? Get in touch with the QuickToolKit team."
-        canonicalUrl="https://quicktoolkit.com/contact"
+        canonicalUrl="https://gamersign94-svg.github.io/quicktoolkit/contact"
         breadcrumbs={breadcrumbs}
       />
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
@@ -207,7 +207,7 @@ export const PrivacyPolicyPage: React.FC<StaticPageProps> = ({ onNavigate }) => 
       <SEOHead
         title="Privacy Policy - QuickToolKit"
         description="QuickToolKit's privacy policy: 100% client-side data processing, zero file uploads, no account registration required."
-        canonicalUrl="https://quicktoolkit.com/privacy-policy"
+        canonicalUrl="https://gamersign94-svg.github.io/quicktoolkit/privacy-policy"
         breadcrumbs={breadcrumbs}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -267,7 +267,7 @@ export const TermsPage: React.FC<StaticPageProps> = ({ onNavigate }) => {
       <SEOHead
         title="Terms of Use - QuickToolKit"
         description="Terms and conditions governing the use of QuickToolKit online tools and services."
-        canonicalUrl="https://quicktoolkit.com/terms-of-use"
+        canonicalUrl="https://gamersign94-svg.github.io/quicktoolkit/terms-of-use"
         breadcrumbs={breadcrumbs}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -313,7 +313,7 @@ export const DisclaimerPage: React.FC<StaticPageProps> = ({ onNavigate }) => {
       <SEOHead
         title="Disclaimer - QuickToolKit"
         description="General disclaimer regarding tool performance, outputs, and browser compatibility on QuickToolKit."
-        canonicalUrl="https://quicktoolkit.com/disclaimer"
+        canonicalUrl="https://gamersign94-svg.github.io/quicktoolkit/disclaimer"
         breadcrumbs={breadcrumbs}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -350,7 +350,7 @@ export const SitemapPage: React.FC<StaticPageProps> = ({ onNavigate }) => {
       <SEOHead
         title="HTML Sitemap - QuickToolKit"
         description="Comprehensive index of all free online tools, category suites, and informational pages on QuickToolKit."
-        canonicalUrl="https://quicktoolkit.com/sitemap"
+        canonicalUrl="https://gamersign94-svg.github.io/quicktoolkit/sitemap"
         breadcrumbs={breadcrumbs}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

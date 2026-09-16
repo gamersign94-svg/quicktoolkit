@@ -17,34 +17,59 @@ import { TOOLS_DATA, CATEGORIES } from './data/toolsData';
 import { ToolCategory } from './types';
 import { AlertCircle, ArrowLeft, Home } from 'lucide-react';
 
+// Helper to resolve the relative app route regardless of base subpath (e.g. /quicktoolkit/)
+const getAppPath = (pathname: string = window.location.pathname): string => {
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  let p = pathname;
+  if (base && p.startsWith(base)) {
+    p = p.slice(base.length);
+  }
+  if (!p.startsWith('/')) {
+    p = '/' + p;
+  }
+  if (p.length > 1 && p.endsWith('/')) {
+    p = p.slice(0, -1);
+  }
+  return p || '/';
+};
+
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== 'undefined') {
-      return window.location.pathname || '/';
+      return getAppPath(window.location.pathname);
     }
     return '/';
   });
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  // Navigate handler
+  // Navigate handler supporting repository subpath on GitHub Pages
   const handleNavigate = useCallback((path: string) => {
     if (path.startsWith('http://') || path.startsWith('https://') || path.endsWith('.xml') || path.endsWith('.txt')) {
-      window.location.href = path;
+      if (path.startsWith('/')) {
+        const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+        window.location.href = `${base}${path}`;
+      } else {
+        window.location.href = path;
+      }
       return;
     }
 
-    if (window.location.pathname !== path) {
-      window.history.pushState({}, '', path);
+    const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+    const cleanPath = path.startsWith('/') ? path : '/' + path;
+    const fullPath = `${base}${cleanPath}` || '/';
+
+    if (window.location.pathname !== fullPath) {
+      window.history.pushState({}, '', fullPath);
     }
-    setCurrentPath(path);
+    setCurrentPath(cleanPath);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   // Popstate listener for back/forward browser buttons
   useEffect(() => {
     const onPopState = () => {
-      setCurrentPath(window.location.pathname || '/');
+      setCurrentPath(getAppPath(window.location.pathname));
     };
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);

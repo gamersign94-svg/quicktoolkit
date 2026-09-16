@@ -412,7 +412,8 @@ export const SitemapPage: React.FC<StaticPageProps> = ({ onNavigate }) => {
                   key={item.path}
                   onClick={() => {
                     if (item.path.endsWith('.xml')) {
-                      window.location.href = item.path;
+                      const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+                      window.location.href = `${base}${item.path}`;
                     } else {
                       onNavigate(item.path);
                     }

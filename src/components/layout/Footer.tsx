@@ -226,7 +226,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <p>© {new Date().getFullYear()} QuickToolKit. Free Online Tools for Everyday Tasks.</p>
           <div className="flex items-center gap-4">
             <a
-              href="/sitemap.xml"
+              href={`${(import.meta.env.BASE_URL || '/').replace(/\/$/, '')}/sitemap.xml`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-slate-800 transition-colors"
@@ -234,7 +234,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               XML Sitemap
             </a>
             <a
-              href="/robots.txt"
+              href={`${(import.meta.env.BASE_URL || '/').replace(/\/$/, '')}/robots.txt`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-slate-800 transition-colors"

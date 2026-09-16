@@ -1,118 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage -->
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
-  
-  <!-- Image Tools -->
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/image-compressor</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/image-resizer</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/image-converter</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
-
-  <!-- PDF Tools -->
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/jpg-to-pdf</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/pdf-to-jpg</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
-
-  <!-- Text Tools -->
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/word-counter</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/case-converter</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/remove-duplicate-lines</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
-
-  <!-- Design Tools -->
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/color-palette-generator</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
-
-  <!-- Developer Tools -->
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/json-formatter</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
-
-  <!-- Informational & Legal Pages -->
+  <url>
+    <loc>https://gamersign94-svg.github.io/quicktoolkit/category/image</loc>
+    <lastmod>2026-09-16</lastmod>
+  </url>
+  <url>
+    <loc>https://gamersign94-svg.github.io/quicktoolkit/category/pdf</loc>
+    <lastmod>2026-09-16</lastmod>
+  </url>
+  <url>
+    <loc>https://gamersign94-svg.github.io/quicktoolkit/category/text</loc>
+    <lastmod>2026-09-16</lastmod>
+  </url>
+  <url>
+    <loc>https://gamersign94-svg.github.io/quicktoolkit/category/design</loc>
+    <lastmod>2026-09-16</lastmod>
+  </url>
+  <url>
+    <loc>https://gamersign94-svg.github.io/quicktoolkit/category/developer</loc>
+    <lastmod>2026-09-16</lastmod>
+  </url>
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/about</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/contact</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/privacy-policy</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://gamersign94-svg.github.io/quicktoolkit/terms</loc>
+    <loc>https://gamersign94-svg.github.io/quicktoolkit/terms-of-use</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/disclaimer</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://gamersign94-svg.github.io/quicktoolkit/sitemap</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
   </url>
 </urlset>

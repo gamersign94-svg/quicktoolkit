@@ -195,7 +195,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('/terms')}
+                  onClick={() => onNavigate('/terms-of-use')}
                   className="hover:text-blue-600 transition-colors cursor-pointer"
                 >
                   Terms of Use

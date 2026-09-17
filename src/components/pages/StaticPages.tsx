@@ -261,13 +261,13 @@ export const PrivacyPolicyPage: React.FC<StaticPageProps> = ({ onNavigate }) => 
 };
 
 export const TermsPage: React.FC<StaticPageProps> = ({ onNavigate }) => {
-  const breadcrumbs = [{ name: 'Terms of Use', url: '/terms-of-use', current: true }];
+  const breadcrumbs = [{ name: 'Terms of Use', url: '/terms', current: true }];
   return (
     <div className="min-h-screen py-8 sm:py-12">
       <SEOHead
         title="Terms of Use - QuickToolKit"
         description="Terms and conditions governing the use of QuickToolKit online tools and services."
-        canonicalUrl="https://gamersign94-svg.github.io/quicktoolkit/terms-of-use"
+        canonicalUrl="https://gamersign94-svg.github.io/quicktoolkit/terms"
         breadcrumbs={breadcrumbs}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -404,7 +404,7 @@ export const SitemapPage: React.FC<StaticPageProps> = ({ onNavigate }) => {
                 { name: 'About QuickToolKit', path: '/about' },
                 { name: 'Contact & Support', path: '/contact' },
                 { name: 'Privacy Policy', path: '/privacy-policy' },
-                { name: 'Terms of Use', path: '/terms-of-use' },
+                { name: 'Terms of Use', path: '/terms' },
                 { name: 'Disclaimer', path: '/disclaimer' },
                 { name: 'XML Sitemap', path: '/sitemap.xml' },
               ].map((item) => (

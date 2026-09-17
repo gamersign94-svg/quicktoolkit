@@ -8,6 +8,7 @@ interface SEOHeadProps {
   tool?: ToolDefinition;
   breadcrumbs?: { name: string; url: string }[];
   isHome?: boolean;
+  faqs?: { question: string; answer: string }[];
 }
 
 export const SEOHead: React.FC<SEOHeadProps> = ({
@@ -17,6 +18,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   tool,
   breadcrumbs,
   isHome = false,
+  faqs,
 }) => {
   useEffect(() => {
     // 1. Update Title
@@ -83,6 +85,25 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       },
     });
 
+    // Homepage WebApplication Schema
+    if (isHome) {
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: 'QuickToolKit',
+        url: 'https://gamersign94-svg.github.io/quicktoolkit/',
+        applicationCategory: 'UtilityApplication',
+        operatingSystem: 'Any',
+        browserRequirements: 'Requires JavaScript. Requires HTML5.',
+        description: description,
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      });
+    }
+
     // Tool WebApplication Schema
     if (tool) {
       schemas.push({
@@ -91,7 +112,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
         name: tool.title,
         url: canonicalUrl,
         applicationCategory: 'UtilityApplication',
-        operatingSystem: 'All',
+        operatingSystem: 'Any',
         browserRequirements: 'Requires JavaScript. Requires HTML5.',
         description: tool.metaDesc,
         offers: {
@@ -100,40 +121,46 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
           priceCurrency: 'USD',
         },
       });
-
-      // FAQPage Schema when FAQs are present
-      if (tool.faqs && tool.faqs.length > 0) {
-        schemas.push({
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: tool.faqs.map((faq) => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: faq.answer,
-            },
-          })),
-        });
-      }
     }
 
-    // BreadcrumbList Schema
-    if (breadcrumbs && breadcrumbs.length > 0) {
+    // FAQPage Schema when visible FAQs are present
+    const activeFaqs = faqs || (tool && tool.faqs ? tool.faqs : undefined);
+    if (activeFaqs && activeFaqs.length > 0) {
       schemas.push({
         '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: breadcrumbs.map((b, idx) => ({
-          '@type': 'ListItem',
-          position: idx + 1,
-          name: b.name,
-          item: b.url,
+        '@type': 'FAQPage',
+        mainEntity: activeFaqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
         })),
       });
     }
 
+    // BreadcrumbList Schema with absolute URLs
+    if (breadcrumbs && breadcrumbs.length > 0) {
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs.map((b, idx) => {
+          const absoluteUrl = b.url.startsWith('http')
+            ? b.url
+            : `https://gamersign94-svg.github.io/quicktoolkit/${b.url.replace(/^\/+/, '')}`;
+          return {
+            '@type': 'ListItem',
+            position: idx + 1,
+            name: b.name,
+            item: absoluteUrl,
+          };
+        }),
+      });
+    }
+
     scriptTag.textContent = JSON.stringify(schemas.length === 1 ? schemas[0] : schemas);
-  }, [title, description, canonicalUrl, tool, breadcrumbs, isHome]);
+  }, [title, description, canonicalUrl, tool, breadcrumbs, isHome, faqs]);
 
   return null;
 };

@@ -33,10 +33,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearch }) 
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="QuickToolKit - Free Online Tools for Everyday Tasks"
-        description="Fast, simple, and free online tools for images, PDFs, text, design, and developers. Process files locally in your browser with 100% privacy."
+        title="QuickToolKit - Free Online Tools for Images, PDF, Text & JSON"
+        description="Free online tools for images, PDFs, text, color, and JSON. Fast, private, browser-based utilities with zero server uploads and no registration required."
         canonicalUrl="https://gamersign94-svg.github.io/quicktoolkit/"
         isHome={true}
+        faqs={GENERAL_FAQS}
       />
 
       {/* Hero Section */}
@@ -47,13 +48,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearch }) 
             <span>100% Free & Client-Side Private • No Server Uploads</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight sm:leading-tight">
-            Free Online Tools for <br className="hidden sm:inline" />
-            <span className="text-blue-600">Everyday Tasks</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
+            Free Online Tools for <span className="text-blue-600">Images, PDF, Text & JSON</span>
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-base sm:text-lg text-slate-600 leading-relaxed">
-            Fast, simple and free online tools for images, PDFs, text, design and developers. Process your files directly inside your browser with maximum speed and complete privacy.
+            QuickToolKit provides fast, free, and secure browser-based utilities for everyday digital tasks. Compress images, convert PDF pages, format JSON payloads, generate color schemes, and analyze text directly on your device with 100% client-side privacy.
           </p>
 
           {/* Large Hero Search Box */}
@@ -162,15 +162,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearch }) 
         </div>
       </section>
 
-      {/* Complete Tools Catalog with Category Tabs */}
-      <section className="py-16 bg-slate-50/60 border-t border-slate-200/70">
+      {/* Complete Tools Catalog with Category Tabs and H2 Category Headings */}
+      <section className="py-16 bg-slate-50/60 border-t border-slate-200/70" id="all-tools">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center sm:text-left">
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
-              All Online Tools ({filteredTools.length})
+              Online Tool Suite ({TOOLS_DATA.length} Free Utilities)
             </h2>
             <p className="mt-1 text-sm text-slate-500">
-              Browse our complete suite of browser-based utilities.
+              Browse our complete suite of browser-based utilities organized by category.
             </p>
           </div>
 
@@ -184,63 +184,149 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearch }) 
                   : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
               }`}
             >
-              All Categories
+              All Categories ({TOOLS_DATA.length})
             </button>
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
-                  selectedCategory === cat.id
-                    ? 'bg-blue-600 text-white shadow-xs'
-                    : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
-                }`}
-              >
-                {cat.name}
-              </button>
-            ))}
+            {CATEGORIES.map((cat) => {
+              const count = TOOLS_DATA.filter((t) => t.category === cat.id).length;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
+                    selectedCategory === cat.id
+                      ? 'bg-blue-600 text-white shadow-xs'
+                      : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
+                  }`}
+                >
+                  {cat.name} ({count})
+                </button>
+              );
+            })}
           </div>
 
-          {/* Tools Grid */}
-          {filteredTools.length === 0 ? (
-            <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center">
-              <p className="text-base font-semibold text-slate-800">No tools matched your search</p>
-              <p className="text-xs text-slate-500 mt-1">Try another keyword or select a different category.</p>
+          {/* Search or Selected Category View */}
+          {selectedCategory !== 'all' || inlineQuery ? (
+            <div>
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+                  {inlineQuery
+                    ? `Search Results for "${inlineQuery}" (${filteredTools.length})`
+                    : `${CATEGORIES.find((c) => c.id === selectedCategory)?.name || 'Filtered Tools'} (${filteredTools.length})`}
+                </h2>
+                {selectedCategory !== 'all' && (
+                  <button
+                    onClick={() => onNavigate(`/category/${selectedCategory}`)}
+                    className="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center gap-1 cursor-pointer"
+                  >
+                    View Category Page <ArrowRight className="h-3.5 w-3.5" />
+                  </button>
+                )}
+              </div>
+
+              {filteredTools.length === 0 ? (
+                <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center">
+                  <p className="text-base font-semibold text-slate-800">No tools matched your search</p>
+                  <p className="text-xs text-slate-500 mt-1">Try another keyword or select a different category.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {filteredTools.map((tool) => (
+                    <div
+                      key={tool.id}
+                      onClick={() => onNavigate(`/${tool.slug}`)}
+                      className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-blue-400 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
+                    >
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            <IconHelper name={tool.iconName} className="h-5 w-5" />
+                          </div>
+                          <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-500 uppercase">
+                            {tool.category}
+                          </span>
+                        </div>
+
+                        <div>
+                          <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                            {tool.title}
+                          </h3>
+                          <p className="mt-1 text-xs text-slate-500 leading-relaxed line-clamp-2">
+                            {tool.shortDesc}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+                        <span>Use Tool</span>
+                        <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {filteredTools.map((tool) => (
-                <div
-                  key={tool.id}
-                  onClick={() => onNavigate(`/${tool.slug}`)}
-                  className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-blue-400 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
-                >
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                        <IconHelper name={tool.iconName} className="h-5 w-5" />
+            /* Categorized Sections with semantic H2 headings */
+            <div className="space-y-12">
+              {CATEGORIES.map((cat) => {
+                const toolsInCat = TOOLS_DATA.filter((t) => t.category === cat.id);
+                if (toolsInCat.length === 0) return null;
+                return (
+                  <div key={cat.id} className="space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-slate-200/80 pb-3">
+                      <div>
+                        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+                          {cat.name}
+                        </h2>
+                        <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+                          {cat.description}
+                        </p>
                       </div>
-                      <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-500 uppercase">
-                        {tool.category}
-                      </span>
+                      <button
+                        onClick={() => onNavigate(`/category/${cat.id}`)}
+                        className="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline inline-flex items-center gap-1 self-start sm:self-auto mt-1 sm:mt-0 cursor-pointer"
+                      >
+                        Explore {cat.name} <ArrowRight className="h-3.5 w-3.5" />
+                      </button>
                     </div>
 
-                    <div>
-                      <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                        {tool.title}
-                      </h3>
-                      <p className="mt-1 text-xs text-slate-500 leading-relaxed line-clamp-2">
-                        {tool.shortDesc}
-                      </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                      {toolsInCat.map((tool) => (
+                        <div
+                          key={tool.id}
+                          onClick={() => onNavigate(`/${tool.slug}`)}
+                          className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-blue-400 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
+                        >
+                          <div className="space-y-3">
+                            <div className="flex items-center justify-between">
+                              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                <IconHelper name={tool.iconName} className="h-5 w-5" />
+                              </div>
+                              <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-500 uppercase">
+                                {tool.category}
+                              </span>
+                            </div>
+
+                            <div>
+                              <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                                {tool.title}
+                              </h3>
+                              <p className="mt-1 text-xs text-slate-500 leading-relaxed line-clamp-2">
+                                {tool.shortDesc}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+                            <span>Open {tool.title}</span>
+                            <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
-
-                  <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
-                    <span>Use Tool</span>
-                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
@@ -374,6 +460,75 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearch }) 
       {/* FAQ Section */}
       <section className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <FAQAccordion faqs={GENERAL_FAQS} title="Frequently Asked Questions" />
+      </section>
+
+      {/* About QuickToolKit & Useful Links Section */}
+      <section className="py-16 bg-white border-t border-slate-200/70">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-slate-200/80 bg-slate-50/70 p-8 sm:p-10 lg:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2 space-y-4">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+                  About QuickToolKit
+                </h2>
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                  QuickToolKit was built with a single mission: to provide fast, private, and dependable online tools for daily digital workflows without annoying paywalls, registration steps, or tracking. Whether you are optimizing photos with our <button onClick={() => onNavigate('/image-compressor')} className="text-blue-600 font-medium hover:underline cursor-pointer">Image Compressor</button>, converting documents with <button onClick={() => onNavigate('/jpg-to-pdf')} className="text-blue-600 font-medium hover:underline cursor-pointer">JPG to PDF</button>, analyzing copy with our <button onClick={() => onNavigate('/word-counter')} className="text-blue-600 font-medium hover:underline cursor-pointer">Word Counter</button>, or debugging payloads using the <button onClick={() => onNavigate('/json-formatter')} className="text-blue-600 font-medium hover:underline cursor-pointer">JSON Formatter</button>, your files stay entirely on your device.
+                </p>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  We leverage HTML5 client-side APIs, WebAssembly, and local memory buffers so that your images and sensitive records never touch remote cloud servers.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-2xs space-y-4">
+                <h3 className="text-base font-bold text-slate-900">
+                  Quick Links & Policies
+                </h3>
+                <ul className="space-y-2.5 text-sm text-slate-600">
+                  <li>
+                    <button
+                      onClick={() => onNavigate('/about')}
+                      className="text-blue-600 hover:text-blue-700 hover:underline flex items-center gap-1.5 cursor-pointer font-medium"
+                    >
+                      <ArrowRight className="h-3.5 w-3.5" /> About Us & Our Mission
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => onNavigate('/contact')}
+                      className="text-blue-600 hover:text-blue-700 hover:underline flex items-center gap-1.5 cursor-pointer font-medium"
+                    >
+                      <ArrowRight className="h-3.5 w-3.5" /> Contact Support & Feedback
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => onNavigate('/privacy-policy')}
+                      className="text-blue-600 hover:text-blue-700 hover:underline flex items-center gap-1.5 cursor-pointer font-medium"
+                    >
+                      <ArrowRight className="h-3.5 w-3.5" /> Privacy Policy (100% Client-Side)
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => onNavigate('/terms')}
+                      className="text-blue-600 hover:text-blue-700 hover:underline flex items-center gap-1.5 cursor-pointer font-medium"
+                    >
+                      <ArrowRight className="h-3.5 w-3.5" /> Terms of Use
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => onNavigate('/disclaimer')}
+                      className="text-blue-600 hover:text-blue-700 hover:underline flex items-center gap-1.5 cursor-pointer font-medium"
+                    >
+                      <ArrowRight className="h-3.5 w-3.5" /> Disclaimer & Fair Use
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

@@ -58,7 +58,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </span>
             </div>
             <p className="text-sm text-slate-500 max-w-sm">
-              Free Online Tools for Everyday Tasks. Fast, simple, and private browser-based utilities for images, PDFs, text, design, and developers.
+              Free Online Tools for Images, PDF, Text & JSON. Fast, simple, and private browser-based utilities with zero server uploads.
             </p>
             <p className="text-xs text-slate-500">
               Files are processed locally in your browser whenever technically possible and are never stored on external servers.
@@ -195,7 +195,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('/terms-of-use')}
+                  onClick={() => onNavigate('/terms')}
                   className="hover:text-blue-600 transition-colors cursor-pointer"
                 >
                   Terms of Use
@@ -223,7 +223,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Bottom Bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-8 sm:flex-row text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} QuickToolKit. Free Online Tools for Everyday Tasks.</p>
+          <p>© {new Date().getFullYear()} QuickToolKit. Free Online Tools for Images, PDF, Text & JSON.</p>
           <div className="flex items-center gap-4">
             <a
               href={`${(import.meta.env.BASE_URL || '/').replace(/\/$/, '')}/sitemap.xml`}

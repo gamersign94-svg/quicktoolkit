@@ -1,6 +1,6 @@
 {
   "name": "QuickToolKit",
-  "description": "Free online tools for everyday tasks. Fast, simple, and private browser-based utilities for images, PDFs, text, design, and developers.",
+  "description": "Free online tools for images, PDFs, text, color, and JSON. Fast, private, browser-based utilities with zero server uploads and no registration required.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
